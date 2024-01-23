@@ -60,4 +60,4 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 
 # Spara grafen
-plt.savefig('path/to/save/daily_light_graph.png')
+plt.savefig('daily_light_graph.png')
