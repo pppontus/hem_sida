@@ -1,0 +1,31 @@
+name: Generate and Upload Daily Light Graph
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs at 00:00 UTC every day
+
+jobs:
+  generate_and_upload_graph:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11.4" # Your specified Python version
+
+      - name: Install dependencies
+        run: pip install matplotlib pandas
+
+      - name: Run script to generate graph
+        run: python generate_graph.py
+
+      - name: Commit and push if there are changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Update daily light graph" -a || echo "No changes to commit"
+          git push
