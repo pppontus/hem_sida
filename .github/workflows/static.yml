@@ -29,7 +29,10 @@ jobs:
           python-version: "3.11.4"
 
       - name: Install dependencies
-        run: pip install matplotlib pandas
+        run: pip install matplotlib pandas numpy astral
+
+      - name: Run script to generate graph
+        run: python generate_graph.py
 
       - name: Run script to generate graph
         run: python generate_graph.py
