@@ -38,9 +38,7 @@ fig, ax1 = plt.subplots(figsize=(15, 6))
 # Plotta antalet ljusa timmar
 ax1.plot(daylight_hours_2024['Date'], daylight_hours_2024['DaylightHours'], color='skyblue', marker='o', markersize=4, linestyle='-')
 ax1.set_ylim(0)  # Börja y-axeln från 0
-ax1.set_xlabel('Datum')
-ax1.set_ylabel('Antal ljusa timmar', color='skyblue')
-ax1.tick_params('y', colors='skyblue')
+ax1.set_xlim(daylight_hours_2024['Date'].min(), daylight_hours_2024['Date'].max())  # Set x-axis limits
 
 # Markera dagens datum
 today = datetime.date.today()
@@ -54,7 +52,8 @@ ax2.set_ylabel('Förändring i dygnets längd (minuter/dag)', color='green')
 ax2.tick_params('y', colors='green')
 
 # Titel och layout
-plt.title('Antal ljusa timmar och förändring i dygnets längd per dag i Norrköping, 2024')
+today_str = today.strftime('%Y-%m-%d')
+plt.title(f'Antal ljusa timmar och förändring i dygnets längd per dag i Norrköping, 2024 (Idag: {today_str})')
 ax1.grid(True)
 plt.xticks(rotation=45)
 plt.tight_layout()
